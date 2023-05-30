@@ -20,6 +20,14 @@ builder.Services.AddDbContext<TestDbmajwtContext>(options =>
 // Dependancy Injection
 builder.Services.AddTransient<IEmployees, Employees>();
 
+
+builder.Services.AddTransient<ITransient, DependancyInjection>();
+
+builder.Services.AddScoped<IScoped, DependancyInjection>();
+
+builder.Services.AddSingleton<ISingoleton, DependancyInjection>();
+
+
 //// Dependancy Injection
 //builder.Services.AddScoped<IEmployees, Employees>();
 
@@ -40,6 +48,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+//app.UseHostFiltering();
 
 app.UseRouting();
 
@@ -47,6 +56,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=DependancyInjectionIndex}/{id?}");
 
 app.Run();
